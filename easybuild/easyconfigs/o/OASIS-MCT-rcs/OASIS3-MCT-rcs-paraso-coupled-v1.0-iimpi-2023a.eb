@@ -1,7 +1,7 @@
-easyblock = 'CMakeMakeCp'
+easyblock = 'CMakeMake'
 
-name='OASIS3-MCT-rcs-paraso-coupled'
-version='v1.0' # due to missing version in copied version in repo
+name='OASIS3-MCT-rcs'
+version='paraso-coupled-v1.0' # due to missing version in copied version in repo
 
 homepage = 'https://oasis.cerfacs.fr/en/home/'
 description = """
@@ -18,7 +18,7 @@ sources = [{
              'git_config': {
                  'url': 'git@gitlab.kuleuven.be:rcs/cclm',
                  'repo_name': 'oasis',
-                 'tag': 'paraso_coupled_%(version)s',
+                 'tag': '%(version)s',
     },
 }]
 
@@ -32,7 +32,7 @@ sanity_check_paths = {
     'files': ['lib/libmct_oasis.a',
               'lib/libmpeu_oasis.a',
               'lib/libscrip.a',
-              'build/lib//psmile.MPI1/mod_oasis_advance.mod',
+              'build/lib/psmile.MPI1/mod_oasis_advance.mod',
     ],
     'dirs': [],
 }
