@@ -42,6 +42,8 @@ configopts = (
     '-Dlibaec_ROOT=$EBROOTLIBAEC '
     '-DCMAKE_C_COMPILER=$EBROOTGCCCORE/bin/gcc '
     '-DCMAKE_Fortran_COMPILER=$EBROOTGCCCORE/bin/gfortran '
+    '-DHDF4_BUILD_NETCDF_TOOLS=OFF '
+    '-DHDF4_ENABLE_NETCDF=OFF '
 )
 
 # After install: add compatibility symlinks for Autotools consumers
