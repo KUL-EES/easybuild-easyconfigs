@@ -18,6 +18,16 @@ dependencies = [('GDAL', '3.11.3')]
 
 configopts = '-DBUILD_SHAPELIB=OFF -DBUILD_PROJ=OFF -DCMAKE_Fortran_MODULE_DIRECTORY=%(builddir)s/mod -DCMAKE_Fortran_FLAGS="$FFLAGS -I/%(start_dir)s/include"'
 
+postinstallcmds = [
+    "bash -c 'set -e; cd %(installdir)s/lib; "
+    "ln -s libfortranGIS.a libfortrangis.a; "
+    "cd %(installdir)s/include/fortrangis; "
+    "mv * ..; "
+    "cd ..; "
+    "rmdir fortrangis; "
+    "'"
+]
+
 sanity_check_paths = {
     'files': ['lib/libfortranGIS.a', 'lib/libfortranc.a'],
     'dirs': ['include', 'lib'],
