@@ -56,6 +56,9 @@ postinstallcmds = [
     # also create a symlink to the highest versioned .so, if present (best-effort)
     "hv=$(ls -1 libhdf.so.* 2>/dev/null | sort -V | tail -n1 || true); "
     "if [ -n \"$hv\" ] && [ ! -e libdf.so.${hv#libhdf.so.} ]; then ln -s \"$hv\" libdf.so.${hv#libhdf.so.}; fi; "
+    "cd %(installdir)s/include; "
+    "for f in *.inc; do sed 's/^[cC]/!/' \"$f\" > \"${f%.inc}.f90\"; done; "
+    "rm netcdf.*; "
     "'"
 ]
 
