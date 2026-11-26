@@ -16,8 +16,10 @@ sources = ['boxmg4wrf-git-c68c68963503b0f6b9922dfb3ac273dad8f271f0.zip']
 
 buildopts = 'BOXMG_COMPILER=intel LAPACK=no FC=mpiifx F90=mpiifx CC=mpiicx CXX=mpiicpx '
 # BoxMG's Makefiles ignore $FFLAGS/$CFLAGS and hardcode -O3/-O2 without any architecture flag;
-# pass EasyBuild's $OPTFLAGS (optimisation level + optarch, e.g. '-O3 -xHost') via BoxMG's override variables
-buildopts += 'BOXMG_FC_OPT="$OPTFLAGS" BOXMG_F90_OPT="$OPTFLAGS" BOXMG_CC_OPT="$OPTFLAGS" BOXMG_CXX_OPT="$OPTFLAGS"'
+# pass EasyBuild's full compiler flags (optimisation level + optarch + toolchain defaults such as
+# '-ftz -fp-speculation=safe -fp-model precise') via BoxMG's override variables.
+# Note: $OPTFLAGS alone would drop the floating-point flags (ifx then defaults to -fp-model fast).
+buildopts += 'BOXMG_FC_OPT="$FFLAGS" BOXMG_F90_OPT="$F90FLAGS" BOXMG_CC_OPT="$CFLAGS" BOXMG_CXX_OPT="$CXXFLAGS"'
 
 # Files to copy into the EasyBuild prefix (no `make install` upstream)
 files_to_copy = [
